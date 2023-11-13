@@ -1,6 +1,6 @@
 import uuid from "react-uuid";
 
-export const penletter = [
+export const fanletter = [
   {
     createdAt: "2023-11-03T02:07:09.423Z",
     nickname: "Dr. Clint Christiansen",
