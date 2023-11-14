@@ -24,7 +24,23 @@ export const StBtnBox = styled.div`
   gap: 20px;
   flex-wrap: wrap;
   border-radius: 20px;
-  background-color: blanchedalmond;
+  background-color: transparent;
+`;
+
+export const StDiv = styled.div`
+  font-size: 20px;
+  padding: 10px;
+  border: 0;
+  border-radius: 15px;
+  background-color: white;
+  cursor: pointer;
+  color: salmon;
+  &:hover {
+    background-color: salmon;
+    color: white;
+    transform: scale(1.3);
+    transition: all 0.5s ease-in-out;
+  }
 `;
 
 export const StBtn = styled.button`
@@ -38,15 +54,15 @@ export const StBtn = styled.button`
   &:hover {
     background-color: white;
     color: salmon;
-    transform: scale(1.3);
-    transition: all 0.5s ease-in-out;
+    transform: scale(1.2);
+    transition: all 0.2s ease-in-out;
   }
 `;
 
 export const Stform = styled.div`
   border: 5px solid salmon;
   width: 500px;
-  height: 300px;
+  height: 350px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -85,6 +101,7 @@ export const Sttextarea = styled.textarea`
   border-radius: 10px;
   border: 0;
   outline: 0;
+  font-family: sans-serif;
 `;
 
 export const StaddBtnbox = styled.div`
@@ -101,9 +118,53 @@ export const Stlist = styled.div`
 `;
 
 export const Stcard = styled.div`
-  border: 1px solid black;
+  border: 5px solid salmon;
   margin: 10px;
   width: 500px;
   padding: 20px;
   border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  background-color: blanchedalmond;
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.2s;
+  }
+`;
+
+export const StletterContent = styled.div`
+  border: 2px solid salmon;
+  background-color: salmon;
+  width: 350px;
+  margin-top: 10px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+`;
+
+export const Stlettercontentbox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+`;
+
+export const Stnickname = styled.h1`
+  font-size: 25px;
+`;
+
+export const Staddtime = styled.p`
+  font-size: 15px;
+`;
+
+export const Stselect = styled.select`
+  width: 150px;
+  font-size: 20px;
+  margin: 0 auto;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
 `;

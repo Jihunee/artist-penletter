@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fanletter } from "shared/data";
 import uuid from "react-uuid";
 import {
   StHeader,
   StBtnBox,
-  StBtn,
+  StDiv,
   Stform,
   Stinputbox,
   Stinput,
@@ -13,6 +13,12 @@ import {
   Stlist,
   Stcard,
   StaddBtnbox,
+  StBtn,
+  StletterContent,
+  Stlettercontentbox,
+  Stnickname,
+  Staddtime,
+  Stselect,
 } from "components/StyleComponents";
 
 function Home() {
@@ -20,42 +26,43 @@ function Home() {
   const [nickName, setNickName] = useState("");
   const [content, setContent] = useState("");
   const [member, setMember] = useState("카리나");
-  const [inputMember, setInputMember] = useState("");
-  // const navigate = useNavigate();
+  const [inputMember, setInputMember] = useState("카리나");
+  const navigate = useNavigate();
 
   return (
     <>
       <StHeader>
         <h1>Artist FanLetter</h1>
         <StBtnBox>
-          <StBtn
+          <StDiv
+            member={member}
             onClick={() => {
               setMember("카리나");
             }}
           >
             카리나
-          </StBtn>
-          <StBtn
+          </StDiv>
+          <StDiv
             onClick={() => {
               setMember("윈터");
             }}
           >
             윈터
-          </StBtn>
-          <StBtn
+          </StDiv>
+          <StDiv
             onClick={() => {
               setMember("지젤");
             }}
           >
             지젤
-          </StBtn>
-          <StBtn
+          </StDiv>
+          <StDiv
             onClick={() => {
               setMember("닝닝");
             }}
           >
             닝닝
-          </StBtn>
+          </StDiv>
         </StBtnBox>
       </StHeader>
       <Stform>
@@ -77,7 +84,7 @@ function Home() {
               writedTo: inputMember,
               createdAt: new Date().toISOString(),
             };
-            setLetter([...letter, newletter]);
+            setLetter([newletter, ...letter]);
             setNickName("");
             setContent("");
           }}
@@ -92,7 +99,7 @@ function Home() {
               }}
               placeholder="최대 20글자까지 작성 할 수 있습니다."
             />
-            내용
+            내 용
             <Sttextarea
               type="text"
               value={content}
@@ -101,7 +108,8 @@ function Home() {
               }}
               placeholder="최대 100자까지 작성 할 수 있습니다."
             />
-            <select
+            누구에게 보낼까요 ?
+            <Stselect
               onChange={(e) => {
                 setInputMember(e.target.value);
               }}
@@ -110,11 +118,11 @@ function Home() {
               <option value="윈터">윈터</option>
               <option value="지젤">지젤</option>
               <option value="닝닝">닝닝</option>
-            </select>
+            </Stselect>
           </Stinputbox>
 
           <StaddBtnbox>
-            <StBtn type="submit">추가</StBtn>
+            <StBtn type="submit">팬레터 등록</StBtn>
           </StaddBtnbox>
         </form>
       </Stform>
@@ -124,13 +132,20 @@ function Home() {
           .filter((item) => item.writedTo === member)
           .map((fan) => {
             return (
-              <Stcard key={fan.id}>
+              <Stcard
+                key={fan.id}
+                onClick={() => {
+                  navigate(`/Detail/${fan.id}`);
+                }}
+              >
                 <img src={fan.avatar} />
-                <h2>{fan.nickname}</h2>
-                <br />
-                <h3>{fan.createdAt}</h3>
-                <br />
-                <p>{fan.content}</p>
+                <Stlettercontentbox>
+                  <Stnickname>{fan.nickname}</Stnickname>
+                  <br />
+                  <Staddtime>{fan.createdAt}</Staddtime>
+                  <br />
+                  <StletterContent>{fan.content}</StletterContent>
+                </Stlettercontentbox>
               </Stcard>
             );
           })}
