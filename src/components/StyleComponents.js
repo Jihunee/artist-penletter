@@ -7,15 +7,12 @@ export const StHeader = styled.header`
   align-items: center;
   flex-direction: column;
   font-size: 60px;
-  background-image: url("https://cdn.imweb.me/upload/S202207202685e30f16e24/8b48c67f8cdf6.jpeg");
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 50px;
-  color: white;
+  margin-bottom: 20px;
+  color: saddlebrown;
+  font-family: "Cafe24";
 `;
 
-export const StBtnBox = styled.div`
+export const MemberButtons = styled.div`
   padding: 30px 0;
   margin-top: 50px;
   width: 400px;
@@ -27,8 +24,8 @@ export const StBtnBox = styled.div`
   background-color: transparent;
 `;
 
-export const StDiv = styled.div`
-  font-size: 20px;
+export const MemberBtn = styled.div`
+  font-size: 30px;
   padding: 10px;
   border: 0;
   border-radius: 15px;
@@ -39,7 +36,7 @@ export const StDiv = styled.div`
     background-color: salmon;
     color: white;
     transform: scale(1.3);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -51,6 +48,7 @@ export const StBtn = styled.button`
   background-color: salmon;
   cursor: pointer;
   color: white;
+  font-family: "Cafe24";
   &:hover {
     background-color: white;
     color: salmon;
@@ -60,7 +58,6 @@ export const StBtn = styled.button`
 `;
 
 export const Stform = styled.div`
-  border: 5px solid salmon;
   width: 500px;
   height: 350px;
   margin: 0 auto;
@@ -70,9 +67,10 @@ export const Stform = styled.div`
   align-items: center;
   padding: 20px;
   border-radius: 20px;
-  background-color: blanchedalmond;
+  background-color: transparent;
   font-size: 20px;
   margin-bottom: 20px;
+  font-family: "Cafe24";
 `;
 
 export const Stinputbox = styled.div`
@@ -91,6 +89,7 @@ export const Stinput = styled.input`
   border-radius: 10px;
   border: 0;
   outline: 0;
+  font-family: "Cafe24";
 `;
 
 export const Sttextarea = styled.textarea`
@@ -101,7 +100,7 @@ export const Sttextarea = styled.textarea`
   border-radius: 10px;
   border: 0;
   outline: 0;
-  font-family: sans-serif;
+  font-family: "Cafe24";
 `;
 
 export const StaddBtnbox = styled.div`
@@ -118,14 +117,14 @@ export const Stlist = styled.div`
 `;
 
 export const Stcard = styled.div`
-  border: 5px solid salmon;
+  border: 5px solid yellow;
   margin: 10px;
   width: 500px;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
   display: flex;
-  background-color: blanchedalmond;
+  font-family: "Cafe24";
   &:hover {
     transform: scale(1.05);
     transition: all 0.2s;
@@ -133,8 +132,6 @@ export const Stcard = styled.div`
 `;
 
 export const StletterContent = styled.div`
-  border: 2px solid salmon;
-  background-color: salmon;
   width: 350px;
   margin-top: 10px;
   height: 20px;
@@ -143,7 +140,7 @@ export const StletterContent = styled.div`
   white-space: nowrap;
   padding: 10px;
   border-radius: 10px;
-  color: white;
+  color: black;
 `;
 
 export const Stlettercontentbox = styled.div`
@@ -167,4 +164,95 @@ export const Stselect = styled.select`
   border: 0;
   outline: 0;
   border-radius: 5px;
+  font-family: "Cafe24";
+`;
+
+// 상세페이지 영역
+
+export const HomeBtn = styled.button`
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  padding: 10px;
+  border: 0;
+  border-radius: 15px;
+  background-color: salmon;
+  cursor: pointer;
+  color: white;
+  font-family: "Cafe24";
+  &:hover {
+    background-color: white;
+    color: salmon;
+    transform: scale(1.2);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+export const CardBox = styled.div`
+  width: 750px;
+  height: 480px;
+  margin: 0 auto;
+  margin-top: 200px;
+  padding: 10px;
+  border-radius: 20px;
+`;
+
+export const CardBoxTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: "Cafe24";
+`;
+
+export const Time = styled.p`
+  font-size: 20px;
+`;
+
+export const NickName = styled.p`
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 40px;
+`;
+
+export const Writed = styled.p`
+  margin-top: 60px;
+  margin-left: 20px;
+  font-size: 20px;
+  font-family: "Cafe24";
+`;
+
+export const TextBox = styled.p`
+  display: block;
+  line-height: 30px;
+  margin-top: 10px;
+  width: 700px;
+  height: 200px;
+  margin-left: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  font-family: "Cafe24";
+`;
+
+export const EditTextBox = styled.textarea`
+  resize: none;
+  margin-top: 10px;
+  width: 700px;
+  height: 200px;
+  margin-left: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  font-family: "Cafe24";
+`;
+
+export const CardBtn = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 30px;
+  margin-right: 60px;
 `;

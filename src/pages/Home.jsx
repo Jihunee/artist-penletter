@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fanletter } from "shared/data";
 import uuid from "react-uuid";
 import {
   StHeader,
-  StBtnBox,
-  StDiv,
+  MemberButtons,
+  MemberBtn,
   Stform,
   Stinputbox,
   Stinput,
@@ -23,54 +23,52 @@ import {
 
 function Home() {
   const [letter, setLetter] = useState(fanletter);
-  const [nickName, setNickName] = useState("");
+  const [nickname, setNickName] = useState("");
   const [content, setContent] = useState("");
   const [member, setMember] = useState("카리나");
   const [inputMember, setInputMember] = useState("카리나");
-  const navigate = useNavigate();
 
   return (
     <>
       <StHeader>
         <h1>Artist FanLetter</h1>
-        <StBtnBox>
-          <StDiv
-            member={member}
+        <MemberButtons>
+          <MemberBtn
             onClick={() => {
               setMember("카리나");
             }}
           >
             카리나
-          </StDiv>
-          <StDiv
+          </MemberBtn>
+          <MemberBtn
             onClick={() => {
               setMember("윈터");
             }}
           >
             윈터
-          </StDiv>
-          <StDiv
+          </MemberBtn>
+          <MemberBtn
             onClick={() => {
               setMember("지젤");
             }}
           >
             지젤
-          </StDiv>
-          <StDiv
+          </MemberBtn>
+          <MemberBtn
             onClick={() => {
               setMember("닝닝");
             }}
           >
             닝닝
-          </StDiv>
-        </StBtnBox>
+          </MemberBtn>
+        </MemberButtons>
       </StHeader>
       <Stform>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             setMember(inputMember);
-            if (nickName === "") {
+            if (nickname === "") {
               alert("닉네임을 입력해주세요");
               return false;
             } else if (content === "") {
@@ -79,12 +77,13 @@ function Home() {
             }
             const newletter = {
               id: uuid(),
-              nickname: nickName,
+              nickname,
               content,
               writedTo: inputMember,
-              createdAt: new Date().toISOString(),
+              createdAt: new Date().toLocaleDateString(),
+              isDeleted: false,
             };
-            setLetter([newletter, ...letter]);
+            setLetter([...letter, newletter]);
             setNickName("");
             setContent("");
           }}
@@ -93,7 +92,7 @@ function Home() {
             닉네임
             <Stinput
               type="text"
-              value={nickName}
+              value={nickname}
               onChange={(e) => {
                 setNickName(e.target.value);
               }}
@@ -129,24 +128,35 @@ function Home() {
 
       <Stlist>
         {letter
+          .filter((item) => item.isDeleted === false)
           .filter((item) => item.writedTo === member)
           .map((fan) => {
             return (
-              <Stcard
+              <Link
+                to={`/Detail/${fan.id}`}
                 key={fan.id}
-                onClick={() => {
-                  navigate(`/Detail/${fan.id}`);
-                }}
+                style={{ textDecoration: "none", color: "black" }}
               >
-                <img src={fan.avatar} />
-                <Stlettercontentbox>
-                  <Stnickname>{fan.nickname}</Stnickname>
-                  <br />
-                  <Staddtime>{fan.createdAt}</Staddtime>
-                  <br />
-                  <StletterContent>{fan.content}</StletterContent>
-                </Stlettercontentbox>
-              </Stcard>
+                <Stcard key={fan.id}>
+                  <img style={{ borderRadius: "80px" }} src={fan.avatar} />
+                  <Stlettercontentbox>
+                    <Stnickname>{fan.nickname}</Stnickname>
+                    <br />
+                    <Staddtime>
+                      {new Date(fan.createdAt).toLocaleDateString("ko", {
+                        year: "2-digit",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                      })}
+                    </Staddtime>
+                    <br />
+                    <StletterContent>{fan.content}</StletterContent>
+                  </Stlettercontentbox>
+                </Stcard>
+              </Link>
             );
           })}
       </Stlist>
