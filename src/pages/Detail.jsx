@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fanletter } from "shared/data";
 import {
   HomeBtn,
   StBtn,
@@ -16,20 +14,22 @@ import {
 import { useState } from "react";
 
 function Detail() {
+  const getData = localStorage.getItem("letters");
+  const result = JSON.parse(getData);
   const params = useParams();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [editingText, setEditingText] = useState();
-  const [letter, setLetter] = useState(fanletter);
+
+  const [letter, setLetter] = useState(result);
+
+  localStorage.setItem("letters2", JSON.stringify(letter));
 
   const foundData = letter.find((item) => {
-    console.log(params.id);
-    console.log(item.id);
-    console.log(item.id === params.id);
     return item.id === params.id;
   });
 
   const { nickname, writedTo, createdAt, content } = foundData;
+  const [editingText, setEditingText] = useState(content);
 
   return (
     <div>
@@ -64,7 +64,7 @@ function Detail() {
             }}
           />
         ) : (
-          <TextBox>{content}</TextBox>
+          <TextBox>{editingText}</TextBox>
         )}
         <CardBtn>
           {isEditing ? (
@@ -74,6 +74,15 @@ function Detail() {
                 setIsEditing(false);
                 const answer = window.confirm("이대로 수정하시겠습니까?");
                 if (!answer) return;
+
+                const editingBox = result.map((item) => {
+                  if (item.id === params.id) {
+                    item.content = editingText;
+                  }
+                  return item;
+                });
+                localStorage.setItem("letters", JSON.stringify(editingBox));
+                localStorage.setItem("letters2", JSON.stringify(editingBox));
 
                 navigate("/");
               }}
@@ -94,11 +103,10 @@ function Detail() {
                   const answer = window.confirm("정말로 삭제하시겠습니까?");
                   if (!answer) return;
 
-                  fanletter.forEach((item) => {
-                    if (item.id === params.id) {
-                      item.isDeleted = true;
-                    }
-                  });
+                  const resultdata2 = result.filter(
+                    (item) => item.id !== params.id
+                  );
+                  localStorage.setItem("letters2", JSON.stringify(resultdata2));
 
                   navigate("/");
                 }}

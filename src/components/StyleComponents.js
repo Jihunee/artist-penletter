@@ -24,22 +24,6 @@ export const MemberButtons = styled.div`
   background-color: transparent;
 `;
 
-export const MemberBtn = styled.div`
-  font-size: 30px;
-  padding: 10px;
-  border: 0;
-  border-radius: 15px;
-  background-color: white;
-  cursor: pointer;
-  color: salmon;
-  &:hover {
-    background-color: salmon;
-    color: white;
-    transform: scale(1.3);
-    transition: all 0.2s ease-in-out;
-  }
-`;
-
 export const StBtn = styled.button`
   font-size: 20px;
   padding: 10px;
@@ -53,6 +37,22 @@ export const StBtn = styled.button`
     background-color: white;
     color: salmon;
     transform: scale(1.2);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+export const MemberBtn = styled.div`
+  padding: 10px;
+  font-size: 30px;
+  border-radius: 15px;
+  background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
+  color: ${(props) => (props.isSelected ? "white" : "salmon")};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
+    color: ${(props) => (props.isSelected ? "white" : "salmon")};
+    transform: scale(1.3);
     transition: all 0.2s ease-in-out;
   }
 `;
@@ -139,7 +139,6 @@ export const StletterContent = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 10px;
-  border-radius: 10px;
   color: black;
 `;
 
