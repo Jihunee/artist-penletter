@@ -13,7 +13,6 @@ import MainContext from "context/MainContext";
 
 export default function Form() {
   const {
-    setMember,
     inputMember,
     setInputMember,
     content,
@@ -23,13 +22,13 @@ export default function Form() {
     letter,
     setLetter,
   } = useContext(MainContext);
+
   return (
     <>
       <Stform>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setMember(inputMember);
             if (nickname === "") {
               alert("닉네임을 입력해주세요");
               return false;

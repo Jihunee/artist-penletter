@@ -9,10 +9,14 @@ import {
   StletterContent,
 } from "./StyleComponents";
 import MainContext from "context/MainContext";
+import { useSelector } from "react-redux";
 
 export default function LetterList() {
-  const { letter, member } = useContext(MainContext);
-  const lettersMember = letter.filter((letters) => letters.writedTo === member);
+  const members = useSelector((state) => state.member);
+  const { letter } = useContext(MainContext);
+  const lettersMember = letter.filter(
+    (letters) => letters.writedTo === members.member
+  );
   return (
     <>
       <Stlist>
@@ -23,7 +27,7 @@ export default function LetterList() {
         ) : (
           <>
             {letter
-              .filter((item) => item.writedTo === member)
+              .filter((item) => item.writedTo === members.member)
               .map((fan) => {
                 return (
                   <Link

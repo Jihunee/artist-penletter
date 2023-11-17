@@ -7,18 +7,16 @@ import MainContext from "context/MainContext";
 
 function Home() {
   const sharedDate = localStorage.getItem("letters2");
-  const reuslt2 = JSON.parse(sharedDate);
-  const [letter, setLetter] = useState(reuslt2);
+  const result2 = JSON.parse(sharedDate);
+  const [letter, setLetter] = useState(result2);
   const [nickname, setNickName] = useState("");
   const [content, setContent] = useState("");
-  const [member, setMember] = useState("카리나");
   const [inputMember, setInputMember] = useState("카리나");
   localStorage.setItem("letters", JSON.stringify(letter));
 
   return (
     <MainContext.Provider
       value={{
-        setMember,
         inputMember,
         setInputMember,
         nickname,
@@ -27,7 +25,6 @@ function Home() {
         setContent,
         letter,
         setLetter,
-        member,
       }}
     >
       <Header />

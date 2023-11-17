@@ -12,7 +12,6 @@ import {
   CardBtn,
 } from "components/StyleComponents";
 import { useState } from "react";
-
 function Detail() {
   const getData = localStorage.getItem("letters");
   const result = JSON.parse(getData);

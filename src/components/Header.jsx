@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StHeader, MemberButtons, MemberBtn } from "./StyleComponents";
 import { useState } from "react";
-import MainContext from "context/MainContext";
+import { useDispatch } from "react-redux";
+import { karina, winter, giselle, ningning } from "redux/modules/member";
 
 function Header() {
-  const { setMember } = useContext(MainContext);
   const [selectedMember, setSelectedMember] = useState("");
+
+  const dispatch = useDispatch();
   return (
     <>
       <StHeader>
@@ -14,7 +16,7 @@ function Header() {
           <MemberBtn
             isSelected={selectedMember === "카리나"}
             onClick={() => {
-              setMember("카리나");
+              dispatch(karina());
               setSelectedMember("카리나");
             }}
           >
@@ -23,7 +25,7 @@ function Header() {
           <MemberBtn
             isSelected={selectedMember === "윈터"}
             onClick={() => {
-              setMember("윈터");
+              dispatch(winter());
               setSelectedMember("윈터");
             }}
           >
@@ -32,7 +34,7 @@ function Header() {
           <MemberBtn
             isSelected={selectedMember === "지젤"}
             onClick={() => {
-              setMember("지젤");
+              dispatch(giselle());
               setSelectedMember("지젤");
             }}
           >
@@ -41,7 +43,7 @@ function Header() {
           <MemberBtn
             isSelected={selectedMember === "닝닝"}
             onClick={() => {
-              setMember("닝닝");
+              dispatch(ningning());
               setSelectedMember("닝닝");
             }}
           >
