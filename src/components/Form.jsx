@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import uuid from "react-uuid";
 import {
   Stform,
@@ -9,18 +9,20 @@ import {
   StaddBtnbox,
   StBtn,
 } from "./StyleComponents";
+import MainContext from "context/MainContext";
 
-export default function Form({
-  setMember,
-  inputMember,
-  setInputMember,
-  content,
-  setContent,
-  nickname,
-  setNickName,
-  letter,
-  setLetter,
-}) {
+export default function Form() {
+  const {
+    setMember,
+    inputMember,
+    setInputMember,
+    content,
+    setContent,
+    nickname,
+    setNickName,
+    letter,
+    setLetter,
+  } = useContext(MainContext);
   return (
     <>
       <Stform>

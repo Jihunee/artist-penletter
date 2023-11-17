@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Header from "components/Header";
 import Form from "components/Form";
 import LetterList from "components/LetterList";
+import MainContext from "context/MainContext";
 
 function Home() {
   const sharedDate = localStorage.getItem("letters2");
@@ -15,22 +16,24 @@ function Home() {
   localStorage.setItem("letters", JSON.stringify(letter));
 
   return (
-    <>
-      <Header setMember={setMember} />
-      <Form
-        setMember={setMember}
-        inputMember={inputMember}
-        setInputMember={setInputMember}
-        nickname={nickname}
-        setNickName={setNickName}
-        content={content}
-        setContent={setContent}
-        letter={letter}
-        setLetter={setLetter}
-      />
-
-      <LetterList letter={letter} member={member} />
-    </>
+    <MainContext.Provider
+      value={{
+        setMember,
+        inputMember,
+        setInputMember,
+        nickname,
+        setNickName,
+        content,
+        setContent,
+        letter,
+        setLetter,
+        member,
+      }}
+    >
+      <Header />
+      <Form />
+      <LetterList />
+    </MainContext.Provider>
   );
 }
 

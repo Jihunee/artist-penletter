@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StHeader, MemberButtons, MemberBtn } from "./StyleComponents";
 import { useState } from "react";
+import MainContext from "context/MainContext";
 
-function Header({ setMember }) {
+function Header() {
+  const { setMember } = useContext(MainContext);
   const [selectedMember, setSelectedMember] = useState("");
   return (
     <>

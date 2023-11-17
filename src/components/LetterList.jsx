@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Stlist,
@@ -8,8 +8,10 @@ import {
   Staddtime,
   StletterContent,
 } from "./StyleComponents";
+import MainContext from "context/MainContext";
 
-export default function LetterList({ letter, member }) {
+export default function LetterList() {
+  const { letter, member } = useContext(MainContext);
   const lettersMember = letter.filter((letters) => letters.writedTo === member);
   return (
     <>
