@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StHeader, MemberButtons, MemberBtn } from "./StyleComponents";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,10 @@ import { karina, winter, giselle, ningning } from "redux/modules/member";
 
 function Header() {
   const [selectedMember, setSelectedMember] = useState("");
+
+  useEffect(() => {
+    setSelectedMember("카리나");
+  }, []);
 
   const dispatch = useDispatch();
   return (
