@@ -10,8 +10,11 @@ import {
   TextBox,
   EditTextBox,
   CardBtn,
+  DetailAvatarImg,
 } from "components/StyleComponents";
 import { useState } from "react";
+import defaultpng from "assts/default.png";
+
 function Detail() {
   const getData = localStorage.getItem("letters");
   const result = JSON.parse(getData);
@@ -27,7 +30,7 @@ function Detail() {
     return item.id === params.id;
   });
 
-  const { nickname, writedTo, createdAt, content } = foundData;
+  const { nickname, writedTo, createdAt, content, avatar } = foundData;
   const [editingText, setEditingText] = useState(content);
 
   return (
@@ -41,6 +44,9 @@ function Detail() {
       </HomeBtn>
       <CardBox>
         <CardBoxTop>
+          <DetailAvatarImg>
+            <img src={avatar ?? defaultpng} />
+          </DetailAvatarImg>
           <NickName>{nickname}</NickName>
           <Time>
             {new Date(createdAt).toLocaleDateString("ko", {

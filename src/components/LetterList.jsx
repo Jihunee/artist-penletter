@@ -7,9 +7,11 @@ import {
   Stnickname,
   Staddtime,
   StletterContent,
+  AvatarImg,
 } from "./StyleComponents";
 import MainContext from "context/MainContext";
 import { useSelector } from "react-redux";
+import defaultpng from "assts/default.png";
 
 export default function LetterList() {
   const members = useSelector((state) => state.member);
@@ -22,7 +24,8 @@ export default function LetterList() {
       <Stlist>
         {lettersMember.length === 0 ? (
           <Stcard>
-            아직 등록한 팬래터가 없습니다. 첫번째 팬레터의 주인공이 되세요!
+            {members.member}의 팬래터가 없습니다. 첫번째 팬레터의 주인공이
+            되세요!
           </Stcard>
         ) : (
           <>
@@ -36,7 +39,10 @@ export default function LetterList() {
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <Stcard key={fan.id}>
-                      <img style={{ borderRadius: "80px" }} src={fan.avatar} />
+                      <AvatarImg>
+                        <img src={fan.avatar ?? defaultpng} />
+                      </AvatarImg>
+
                       <Stlettercontentbox>
                         <Stnickname>{fan.nickname}</Stnickname>
                         <br />

@@ -33,11 +33,11 @@ export const StBtn = styled.button`
   cursor: pointer;
   color: white;
   font-family: "Cafe24";
+  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: white;
     color: salmon;
     transform: scale(1.2);
-    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -48,12 +48,12 @@ export const MemberBtn = styled.div`
   background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
   color: ${(props) => (props.isSelected ? "white" : "salmon")};
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
     color: ${(props) => (props.isSelected ? "white" : "salmon")};
     transform: scale(1.3);
-    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -71,6 +71,19 @@ export const Stform = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
   font-family: "Cafe24";
+`;
+
+export const AvatarImg = styled.figure`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;
 
 export const Stinputbox = styled.div`
@@ -125,9 +138,9 @@ export const Stcard = styled.div`
   cursor: pointer;
   display: flex;
   font-family: "Cafe24";
+  transition: all 0.2s;
   &:hover {
     transform: scale(1.05);
-    transition: all 0.2s;
   }
 `;
 
@@ -138,7 +151,6 @@ export const StletterContent = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 10px;
   color: black;
 `;
 
@@ -180,11 +192,11 @@ export const HomeBtn = styled.button`
   cursor: pointer;
   color: white;
   font-family: "Cafe24";
+  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: white;
     color: salmon;
     transform: scale(1.2);
-    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -204,6 +216,19 @@ export const CardBoxTop = styled.div`
   align-items: center;
   margin-bottom: 20px;
   font-family: "Cafe24";
+`;
+
+export const DetailAvatarImg = styled.figure`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;
 
 export const Time = styled.p`
