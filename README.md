@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Artist Fanletter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🔸아티스트 팬레터 useState로 구현하기
 
-## Available Scripts
+# Header
 
-In the project directory, you can run:
+### 조건부 스타일링
 
-### `yarn start`
+#### Header Component
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    <MemberButtons>
+              <MemberBtn
+                isSelected={selectedMember === "카리나"}
+                onClick={() => {
+                  setMember("카리나");
+                  setSelectedMember("카리나");
+                }}
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. selectedMember State를 하나만든다.
+2. selectedMember가 카리나랑 일치하면 해당 스타일 적용
 
-### `yarn test`
+#### Stylecomponent
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    export const MemberBtn = styled.div`
+      padding: 10px;
+      font-size: 30px;
+      border-radius: 15px;
+      background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
+      color: ${(props) => (props.isSelected ? "white" : "salmon")};
+      cursor: pointer;
 
-### `yarn build`
+      &:hover {
+        background-color: ${(props) => (props.isSelected ? "salmon" : "white")};
+        color: ${(props) => (props.isSelected ? "white" : "salmon")};
+        transform: scale(1.3);
+        transition: all 0.2s ease-in-out;
+      }
+    `;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 로컬스토리지 활용
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 활용한 계기
+🔸메인페이지에서 추가한 데이터값을 상세페이지에서는 값을 받지 못하여 데이터를 담아 둘 곳이 필요하여 활용하였습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 활용 코드
 
-### `yarn eject`
+    localStorage.setItem("letters", JSON.stringify(letter));
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.먼저 메인에서 데이터값을 담아둔다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    const getData = localStorage.getItem("letters");
+      const result = JSON.parse(getData);
+      const [letter, setLetter] = useState(result);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. 데이터 값을 상세페이지에서 parse 문법으로 받아준다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        localStorage.setItem("letters2", JSON.stringify(letter));
 
-## Learn More
+3. 다시 상세페이지 데이터 값을 담아둔다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        const sharedDate = localStorage.getItem("letters2");
+          const reuslt2 = JSON.parse(sharedDate);
+          const [letter, setLetter] = useState(reuslt2);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. 다시 상세페이지 데이터를 다시 메인페이지에서 받아준다.
 
-### Code Splitting
+### Home.Jax
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Context를 사용하기 전 Home 컴포넌트 구성
 
-### Analyzing the Bundle Size
+    return (
+        <>
+          <Header setMember={setMember} />
+          <Form
+            setMember={setMember}
+            inputMember={inputMember}
+            setInputMember={setInputMember}
+            nickname={nickname}
+            setNickName={setNickName}
+            content={content}
+            setContent={setContent}
+            letter={letter}
+            setLetter={setLetter}
+          />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+          <LetterList letter={letter} member={member} />
+        </>
+      );
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
